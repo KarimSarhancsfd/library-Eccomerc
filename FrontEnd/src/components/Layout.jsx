@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
-import { ShoppingCart, User } from 'react-icons/fa'
+// Update import
+import { FaShoppingCart, FaUser } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 import { useCart } from '../context/CartContext'
 
@@ -43,15 +44,28 @@ const Layout = ({ children }) => {
 
             <div className="flex items-center space-x-4">
               <Link to="/cart" className="relative">
-                <ShoppingCart className="text-2xl text-gray-700" />
+                // Update JSX usage
+                <FaShoppingCart className="text-2xl text-gray-700" />
+                // In JSX
+                <FaUser className="text-2xl" />
                 {cartItemCount > 0 && (
                   <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                     {cartItemCount}
                   </span>
                 )}
               </Link>
+              // Import section
+           
+              
+              // In the account link section
               <Link to="/account" className="text-gray-700">
-                <User className="text-2xl" />
+                // Correct usage:
+                <FaUser className="text-2xl" />
+                
+                // Incorrect usage to avoid:
+                <div>{FaUser}</div>  // WRONG
+                <div>FaUser</div>     // WRONG
+                <div>{<FaUser />}</div> // UNNECESSARY WRAPPER
               </Link>
               <Link 
                 to="/admin" 
